@@ -13,12 +13,12 @@ console.log('Directorio actual:', process.cwd());
 import express from 'express';
 import cors from 'cors';
 import contractRoutes from './routes/contractRoutes';
-
+import supabaseRoutes from './routes/supabaseRoutes';
 const app = express();
 
 // Configuración de CORS
 const corsOptions = {
-  origin: process.env.FRONTEND_URL || 'https://kitdigital.siwebcanarias.es', // URL del frontend
+  origin: process.env.FRONTEND_URL || 'http://localhost:5173', // URL del frontend
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
   allowedHeaders: ['Content-Type', 'X-AUTH-TOKEN'],
   credentials: true,
@@ -31,6 +31,7 @@ app.use(express.json());
 
 // Rutas
 app.use('/api', contractRoutes);
+app.use('/api', supabaseRoutes);
 
 const PORT = process.env.PORT || 3000;
 
